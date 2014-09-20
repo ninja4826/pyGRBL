@@ -91,6 +91,40 @@ elif mode == 'g':
 		s.write(line + '\n')
 		grbl_out = s.readline()
 		print ' : ' + grbl_out.strip()
+elif mode == 'c':
+	print "Entering Command mode..."
+	while True:
+	
+		cmd = raw_input("CMD :").strip()
+		
+		if cmd == 'exit':
+			break
+		
+		s.write(cmd + '\n')
+		grbl_out = s.readline()
+		print ' : ' + grbl_out.strip()
+	
 raw_input("  Press <Enter> to exit and disable grbl.")
 
 s.close()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
