@@ -5,7 +5,6 @@ import sys
 import argparse
 
 def manual(x, y, z):
-	print 'Entering Manual mode'
 	key = raw_input("Enter command. [W/A/S/D/Q/E]").strip()
 	key.upper()
 	if key.upper() == "W":
@@ -60,6 +59,9 @@ time.sleep(2)
 s.flushInput()
 
 if mode == 'm':
+
+	print "Entering Manual mode..."
+	
 	x = 0
 	y = 0
 	z = 0
