@@ -3,6 +3,7 @@ import serial
 import time
 import sys
 import argparse
+from __future__ import division
 
 def manual(x, y, z):
 	key = raw_input("Enter command. [W/A/S/D/Q/E]").strip()
@@ -92,7 +93,7 @@ elif mode == 'g':
 		i += 1
 		line_print = "%s : %s" % (str(i), line)
 		print line_print
-		progres = (count / total)100
+		progres = (count/total)*100
 		print str(progress) + "% done."
 		s.write(line + '\n')
 		grbl_out = s.readline()
