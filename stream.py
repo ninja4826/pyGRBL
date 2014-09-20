@@ -107,7 +107,9 @@ elif mode == 'c':
 			
 			print ' : ' + grbl_out.strip()
 			
-			if grbl_out.strip() == 'ok':
+			arr = grbl_out.split()
+			
+			if arr[0] == 'ok' or arr[0] == 'error' :
 				break
 	
 raw_input("  Press <Enter> to exit and disable grbl.")
