@@ -101,7 +101,7 @@ elif mode == 'c':
 			break
 		
 		s.write(cmd + '\n')
-		grbl_out = s.read(100)
+		grbl_out = s.read(1000000000)
 		print ' : ' + grbl_out.strip()
 	
 raw_input("  Press <Enter> to exit and disable grbl.")
