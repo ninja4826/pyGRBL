@@ -1,9 +1,10 @@
 #Imports
+from __future__ import division
 import serial
 import time
 import sys
 import argparse
-from __future__ import division
+
 
 def manual(x, y, z):
 	key = raw_input("Enter command. [W/A/S/D/Q/E]").strip()
