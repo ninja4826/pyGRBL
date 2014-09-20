@@ -102,7 +102,7 @@ elif mode == 'c':
 		
 		s.write(cmd + '\n')
 		
-		while True
+		while True:
 			grbl_out = s.readline()
 			
 			print ' : ' + grbl_out.strip()
