@@ -87,7 +87,7 @@ elif mode == 'g':
 	total =0
 	progress = 0
 	for l in out:
-		total +=
+		total += 1
 	for line in out:
 		i += 1
 		line_print = "%s : %s" % (str(i), line)
