@@ -91,7 +91,7 @@ elif mode == 'g':
 	for l in out:
 		total += 1
 	for line in out:
-		i += 1
+		count += 1
 		line_print = "%s : %s" % (str(i), line)
 		print line_print
 		progres = (count/total)*100
