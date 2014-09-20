@@ -87,6 +87,7 @@ elif mode == 'g':
 	for line in out:
 		i += 1
 		line_print = "%s : %s" % (str(i), line)
+		print line_print
 		s.write(line + '\n')
 		grbl_out = s.readline()
 		print ' : ' + grbl_out.strip()
