@@ -95,7 +95,7 @@ elif mode == 'c':
 	print "Entering Command mode..."
 	while True:
 	
-		cmd = raw_input("CMD :").strip()
+		cmd = raw_input("CMD : ").strip()
 		
 		if cmd == 'exit':
 			break
