@@ -83,9 +83,10 @@ if mode == 'm':
 	print "Manual mode exiting..."
 elif mode == 'g':
 	out = gcode(file)
-	
+	i = 0
 	for line in out:
-		print line
+		i += 1
+		line_print = "%s : %s" % (str(i), line)
 		s.write(line + '\n')
 		grbl_out = s.readline()
 		print ' : ' + grbl_out.strip()
