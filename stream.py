@@ -62,12 +62,12 @@ def gcode(file, server):
 			
 		r.close()
 			
-		elif server == '':
-		
-			f = open(file, 'r');
-			arr = []
-			for line in f:
-			arr.append(line.strip())
+	elif server == '':
+	
+		f = open(file, 'r');
+		arr = []
+		for line in f:
+		arr.append(line.strip())
 	
 	f.close()
 	return arr
