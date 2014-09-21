@@ -60,7 +60,7 @@ def gcode(file, server):
 		else:
 			print('File %s does not exist on FTP server :(' % file
 			
-			r.close()
+		r.close()
 			
 		elif server == '':
 		
