@@ -20,5 +20,9 @@ for f in filelist:
 		file_exists = True
 if file_exists:
 	ftp.retrbinary('RETR %s' % file, r.write)
-	
-print r.getvalue()
+	i = 0
+	for l in r:
+		i += 1
+		print str(i)
+		print l
+r.close()
