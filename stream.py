@@ -36,33 +36,12 @@ def manual(x, y, z):
 		
 def gcode(file, server):
 
-	if server != '':
+	f = open(file, 'r');
+	arr = []
+	for line in f:
+		arr.append(line.strip())
 	
-		file_exists = False
-		r = StringIO()
-		
-		try:
-			ftp = ftplib.FTP(server)
-			ftp.login("russ")
-		except Exception,e:
-			print e
-		else:
-			filelist = []
-			ftp.retrlines('LIST', filelist.append)
-		for f in filelist:
-			if file in f:
-				file_exists = True
-		if file_exists:
-			ftp.retrbinary('RETR %s' % file, r.write)
-			
-	print r.getvalue()
-
-#	f = open(file, 'r');
-#	arr = []
-#	for line in f:
-#		arr.append(line.strip())
-#	
-#	f.close()
+	f.close()
 	return arr
 
 
@@ -112,20 +91,20 @@ if mode == 'm':
 elif mode == 'g':
 
 	out = gcode(file, server)
-	# i = 0
-	# total =0
-	# progress = 0
-	# for l in out:
-		# total += 1
-	# for line in out:
-		# i += 1
-		# line_print = "%s : %s" % (str(i), line)
-		# print line_print
-		# progres = (i/total)*100
-		# print str(progress) + "% done."
-		# s.write(line + '\n')
-		# grbl_out = s.readline()
-		# print ' : ' + grbl_out.strip()
+	i = 0
+	total =0
+	progress = 0
+	for l in out:
+		total += 1
+	for line in out:
+		i += 1
+		line_print = "%s : %s" % (str(i), line)
+		print line_print
+		progres = (i/total)*100
+		print str(progress) + "% done."
+		s.write(line + '\n')
+		grbl_out = s.readline()
+		print ' : ' + grbl_out.strip()
 elif mode == 'c':
 	print "Entering Command mode..."
 	while True:
@@ -150,34 +129,7 @@ elif mode == 'c':
 	
 raw_input("  Press <Enter> to exit and disable grbl.")
 
-#
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+s.close()
 
 
 
