@@ -1,4 +1,7 @@
 
+from StringIO import StringIO
+import ftplib
+
 server = '192.168.1.30'
 file = 'asdf.txt'
 file_exists = False
