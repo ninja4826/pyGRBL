@@ -5,7 +5,7 @@ G20 G90 (remove G40)
 (write the words)
 G0 Z0.125
 (remove x)
-G17
+G17z
 
 G0 X0.435 Y0.4042
 G1 Z-0.01 F10
