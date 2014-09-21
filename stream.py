@@ -70,7 +70,6 @@ parser = argparse.ArgumentParser()
 parser.add_argument('device', help='The path to the device to be controlled.')
 parser.add_argument('-m', '--mode')
 parser.add_argument('-f', '--file', default='')
-parser.add_argument('-t', '--test', action='store_True')
 parser.add_argument('-ftp', default='')
 
 args = parser.parse_args()
@@ -81,7 +80,7 @@ file = args.file
 server = args.ftp
 test = args.test
 
-if test == False:
+if ftp == '':
 	s = serial.Serial(device, 9600)
 	s.write("\r\n\r\n")
 	time.sleep(2)
@@ -111,31 +110,6 @@ if mode == 'm':
 			break
 	print "Manual mode exiting..."
 	
-if mode == 't':
-
-	print "Entering Manual mode..."
-	
-	x = 0
-	y = 0
-	z = 0
-	while True:
-		
-		output = manual(x, y, z)
-		out = output[0]
-		x = output[1]
-		y = output[2]
-		z = output[3]
-		print out
-		if out != "esc":
-			print out
-			print str(x)
-			print str(y)
-			print str(z)
-		if out == "esc":
-			break
-	print "Manual mode exiting..."
-	
-
 elif mode == 'g':
 
 	out = gcode(file, server)
