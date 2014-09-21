@@ -85,11 +85,10 @@ mode = args.mode
 file = args.file
 server = args.ftp
 
-if server == '':
-	s = serial.Serial(device, 9600)
-	s.write("\r\n\r\n")
-	time.sleep(2)
-	s.flushInput()
+s = serial.Serial(device, 9600)
+s.write("\r\n\r\n")
+time.sleep(2)
+s.flushInput()
 
 if mode == 'm':
 
@@ -126,9 +125,9 @@ elif mode == 'g':
 		print line_print
 		progress = str(round((i/len(out))*100))
 		print str(progress) + "% done."
-		# s.write(line + '\n')
-		# grbl_out = s.readline()
-		# print ' : ' + grbl_out.strip()
+		s.write(line + '\n')
+		grbl_out = s.readline()
+		print ' : ' + grbl_out.strip()
 		
 		
 elif mode == 'c':
