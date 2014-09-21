@@ -1,7 +1,6 @@
 #Imports
 from __future__ import division
-import serial, time, sys, argparse, getch
-	
+import serial, time, sys, argparse, os
 
 def manual(x, y, z):
 	input = raw_input("Enter command. [W/A/S/D/Q/E]").strip()
@@ -55,6 +54,11 @@ device = args.device
 mode = args.mode
 file = args.file
 
+if mode != 't':
+	s = serial.Serial(device, 9600)
+	s.write("\r\n\r\n")
+	time.sleep(2)
+	s.flushInput()
 
 if mode == 'm':
 
@@ -75,6 +79,27 @@ if mode == 'm':
 			s.write(out + '\n')
 			grbl_out = s.readline()
 			print ' : ' + grbl_out.strip()
+		
+		if out == "esc":
+			break
+	print "Manual mode exiting..."
+	
+if mode == 'm':
+
+	print "Entering Manual mode..."
+	
+	x = 0
+	y = 0
+	z = 0
+	while True:
+		
+		output = manual(x, y, z)
+		out = output[0]
+		x = output[1]
+		y = output[2]
+		z = output[3]
+		if out != "esc":
+			print out
 		
 		if out == "esc":
 			break
