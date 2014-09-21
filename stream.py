@@ -68,8 +68,7 @@ def gcode(file, server):
 		arr = []
 		for line in f:
 			arr.append(line.strip())
-	
-	f.close()
+		f.close()
 	return arr
 
 
