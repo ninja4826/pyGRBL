@@ -124,7 +124,7 @@ if mode == 'm':
 	
 if mode == 't':
 
-	print "Entering Manual mode..."
+	print "Entering test mode..."
 	
 	x = 0
 	y = 0
