@@ -58,7 +58,7 @@ def gcode(file, server):
 			arr = [s.strip() for s in r_string.splitlines()]
 			i = 0
 		else:
-			print('File %s does not exist on FTP server :(' % file
+			print('File %s does not exist on FTP server :(' % file)
 			
 		r.close()
 			
