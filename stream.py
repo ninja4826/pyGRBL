@@ -1,16 +1,10 @@
 #Imports
 from __future__ import division
-import serial, time, sys, argparse, tty
+import serial, time, sys, argparse, getch
 	
 def test(x, y, z):
-
-	fd = sys.stdin.fileno()
-	old_settings = termios.tcgetattr(fd)
-	try:
-		tty.setraw(sys.stdin.fileno())
-		ch = sys.stdin.read(1)
-	finally:
-		termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+		
+	ch = getch.getch()
 		
 	key = ch
 		
