@@ -30,7 +30,7 @@ if file_exists:
 	
 	for l in arr:
 		i += 1
-		print str((i/total)*100)
+		print str(((i/total)*100).round())
 		print l
 else:
 	print ':('
