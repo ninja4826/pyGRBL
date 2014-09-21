@@ -78,7 +78,6 @@ device = args.device
 mode = args.mode
 file = args.file
 server = args.ftp
-test = args.test
 
 if ftp == '':
 	s = serial.Serial(device, 9600)
