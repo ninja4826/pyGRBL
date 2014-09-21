@@ -1,10 +1,44 @@
 #Imports
 from __future__ import division
-import serial
-import time
-import sys
-import argparse
+import serial, time, sys, argparse, tty
+	
+def test(x, y, z):
 
+	fd = sys.stdin.fileno()
+	old_settings = termios.tcgetattr(fd)
+	try:
+		tty.setraw(sys.stdin.fileno())
+		ch = sys.stdin.read(1)
+	finally:
+		termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+		
+	key = ch
+		
+	key.upper()
+	if key.upper() == "W":
+		output = 'G0 X%s Y%s Z%s' % (str(x), str(y + 1), str(z))
+		y += 1
+	elif key.upper() == 'S':
+		output = 'G0 X%s Y%s Z%s' % (str(x), str(y - 1), str(z))
+		y -=1
+	elif key.upper() == 'D':
+		output = 'G0 X%s Y%s Z%s' % (str(x + 1), str(y), str(z))
+		x += 1
+	elif key.upper() == 'A':
+		output = 'G0 X%s Y%s Z%s' % (str(x - 1), str(y), str(z))
+		x -= 1
+	elif key.upper() == 'Q':
+		output = 'G0 X%s Y%s Z%s' % (str(x), str(y), str(z + 1))
+		z += 1
+	elif key.upper() == 'E':
+		output = 'G0 X%s Y%s Z%s' % (str(x), str(y), str(z - 1))
+		z -=1
+	elif key.upper() == '':
+		output = "esc"
+	
+	man = [output, x, y, z]
+	
+	return man
 
 def manual(x, y, z):
 	key = raw_input("Enter command. [W/A/S/D/Q/E]").strip()
@@ -43,6 +77,7 @@ def gcode(file):
 	
 	f.close()
 	return arr
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument('device', help='The path to the device to be controlled.')
@@ -83,6 +118,27 @@ if mode == 'm':
 		if out == "esc":
 			break
 	print "Manual mode exiting..."
+	
+if mode == 't':
+
+	print "Entering Manual mode..."
+	
+	x = 0
+	y = 0
+	z = 0
+	while True:
+		
+		output = manual(x, y, z)
+		out = output[0]
+		x = output[1]
+		y = output[2]
+		z = output[3]
+		if out != "esc":
+			print out
+		if out == "esc":
+			break
+	print "Manual mode exiting..."
+
 elif mode == 'g':
 	out = gcode(file)
 	i = 0
