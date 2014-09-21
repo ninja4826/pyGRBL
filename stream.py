@@ -119,15 +119,12 @@ elif mode == 'g':
 
 	out = gcode(file, server)
 	i = 0
-	total =0
 	progress = 0
-	for l in out:
-		total += 1
 	for line in out:
 		i += 1
 		line_print = "%s : %s" % (str(i), line)
 		print line_print
-		progres = (i/total)*100
+		progress = str(round((i/len(arr))*100))
 		print str(progress) + "% done."
 		# s.write(line + '\n')
 		# grbl_out = s.readline()
