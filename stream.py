@@ -79,7 +79,7 @@ mode = args.mode
 file = args.file
 server = args.ftp
 
-if ftp == '':
+if server == '':
 	s = serial.Serial(device, 9600)
 	s.write("\r\n\r\n")
 	time.sleep(2)
