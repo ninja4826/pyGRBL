@@ -23,8 +23,11 @@ if file_exists:
 	r_string = r.getvalue()
 	arr = [s.strip() for s in r_string.splitlines()]
 	i = 0
-	for l in r:
+	for l in arr:
 		i += 1
 		print str(i)
 		print l
+else:
+	print ':('
+	
 r.close()
