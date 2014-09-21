@@ -127,7 +127,10 @@ if mode == 't':
 		z = output[3]
 		print out
 		if out != "esc":
-		
+			print out
+			print str(x)
+			print str(y)
+			print str(z)
 		if out == "esc":
 			break
 	print "Manual mode exiting..."
