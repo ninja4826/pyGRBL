@@ -1,6 +1,7 @@
 #Imports
 from __future__ import division
-import serial, time, sys, argparse, os
+from StringIO import StringIO
+import serial, time, sys, argparse, os, ftplib
 
 def manual(x, y, z):
 	input = raw_input("Enter command. [W/A/S/D/Q/E]").strip()
@@ -33,14 +34,35 @@ def manual(x, y, z):
 	
 	return man
 		
-def gcode(file):
+def gcode(file, server):
 
-	f = open(file, 'r');
-	arr = []
-	for line in f:
-		arr.append(line.strip())
+	if server != '':
 	
-	f.close()
+		file_exists = False
+		r = StringIO()
+		
+		try:
+			ftp = ftplib.FTP(server)
+			ftp.login("russ")
+		except Exception,e:
+			print e
+		else:
+			filelist = []
+			ftp.retrlines('LIST', filelist.append)
+		for f in filelist:
+			if file in f:
+				file_exists = True
+		if file_exists:
+			ftp.retrbinary('RETR %s' % file, r.write)
+			
+	print r.getvalue()
+
+#	f = open(file, 'r');
+#	arr = []
+#	for line in f:
+#		arr.append(line.strip())
+#	
+#	f.close()
 	return arr
 
 
@@ -48,14 +70,18 @@ parser = argparse.ArgumentParser()
 parser.add_argument('device', help='The path to the device to be controlled.')
 parser.add_argument('-m', '--mode')
 parser.add_argument('-f', '--file', default='')
+parser.add_argument('-t', '--test', store_True)
+parser.add_argument('-ftp', default='')
 
 args = parser.parse_args()
 
 device = args.device
 mode = args.mode
 file = args.file
+server = args.ftp
+test = args.test
 
-if mode != 't':
+if test == False:
 	s = serial.Serial(device, 9600)
 	s.write("\r\n\r\n")
 	time.sleep(2)
@@ -108,21 +134,22 @@ if mode == 't':
 	
 
 elif mode == 'g':
-	out = gcode(file)
-	i = 0
-	total =0
-	progress = 0
-	for l in out:
-		total += 1
-	for line in out:
-		i += 1
-		line_print = "%s : %s" % (str(i), line)
-		print line_print
-		progres = (i/total)*100
-		print str(progress) + "% done."
-		s.write(line + '\n')
-		grbl_out = s.readline()
-		print ' : ' + grbl_out.strip()
+
+	out = gcode(file, server)
+	# i = 0
+	# total =0
+	# progress = 0
+	# for l in out:
+		# total += 1
+	# for line in out:
+		# i += 1
+		# line_print = "%s : %s" % (str(i), line)
+		# print line_print
+		# progres = (i/total)*100
+		# print str(progress) + "% done."
+		# s.write(line + '\n')
+		# grbl_out = s.readline()
+		# print ' : ' + grbl_out.strip()
 elif mode == 'c':
 	print "Entering Command mode..."
 	while True:
@@ -144,6 +171,48 @@ elif mode == 'c':
 			if arr[0] == 'ok' or arr[0] == 'error:' :
 				break
 	
+	
 raw_input("  Press <Enter> to exit and disable grbl.")
 
-s.close()
+#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
