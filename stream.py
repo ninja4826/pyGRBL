@@ -70,7 +70,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('device', help='The path to the device to be controlled.')
 parser.add_argument('-m', '--mode')
 parser.add_argument('-f', '--file', default='')
-parser.add_argument('-t', '--test', action=store_True)
+parser.add_argument('-t', '--test', action='store_True')
 parser.add_argument('-ftp', default='')
 
 args = parser.parse_args()
