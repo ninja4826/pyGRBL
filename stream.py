@@ -124,7 +124,7 @@ elif mode == 'g':
 		i += 1
 		line_print = "%s : %s" % (str(i), line)
 		print line_print
-		progress = str(round((i/len(arr))*100))
+		progress = str(round((i/len(out))*100))
 		print str(progress) + "% done."
 		# s.write(line + '\n')
 		# grbl_out = s.readline()
