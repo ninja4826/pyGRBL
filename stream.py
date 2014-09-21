@@ -84,7 +84,7 @@ if mode == 'm':
 			break
 	print "Manual mode exiting..."
 	
-if mode == 'm':
+if mode == 't':
 
 	print "Entering Manual mode..."
 	
