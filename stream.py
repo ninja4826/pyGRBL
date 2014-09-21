@@ -90,10 +90,13 @@ device = args.device
 mode = args.mode
 file = args.file
 
-s = serial.Serial(device, 9600)
-s.write("\r\n\r\n")
-time.sleep(2)
-s.flushInput()
+
+if mode != 't':
+
+	s = serial.Serial(device, 9600)
+	s.write("\r\n\r\n")
+	time.sleep(2)
+	s.flushInput()
 
 if mode == 'm':
 
