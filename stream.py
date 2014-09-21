@@ -35,11 +35,39 @@ def manual(x, y, z):
 	return man
 		
 def gcode(file, server):
-
-	f = open(file, 'r');
-	arr = []
-	for line in f:
-		arr.append(line.strip())
+	
+	if server != '':
+	
+		file_exists = False
+		r = StringIO()
+		
+		try:
+			ftp = ftplib.FTP(server)
+			ftp.login("russ")
+		except Exception,e:
+			print e
+		else:
+			filelist = []
+			ftp.retrlines('LIST', filelist.append)
+		for f in filelist:
+			if file in f:
+				file_exists = True
+		if file_exists:
+			ftp.retrbinary('RETR %s' % file, r.write)
+			r_string = r.getvalue()
+			arr = [s.strip() for s in r_string.splitlines()]
+			i = 0
+		else:
+			print('File %s does not exist on FTP server :(' % file
+			
+			r.close()
+			
+		elif server == '':
+		
+			f = open(file, 'r');
+			arr = []
+			for line in f:
+			arr.append(line.strip())
 	
 	f.close()
 	return arr
@@ -105,6 +133,8 @@ elif mode == 'g':
 		s.write(line + '\n')
 		grbl_out = s.readline()
 		print ' : ' + grbl_out.strip()
+		
+		
 elif mode == 'c':
 	print "Entering Command mode..."
 	while True:
