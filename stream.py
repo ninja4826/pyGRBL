@@ -67,7 +67,7 @@ def gcode(file, server):
 		f = open(file, 'r');
 		arr = []
 		for line in f:
-		arr.append(line.strip())
+			arr.append(line.strip())
 	
 	f.close()
 	return arr
@@ -130,9 +130,9 @@ elif mode == 'g':
 		print line_print
 		progres = (i/total)*100
 		print str(progress) + "% done."
-		s.write(line + '\n')
-		grbl_out = s.readline()
-		print ' : ' + grbl_out.strip()
+		# s.write(line + '\n')
+		# grbl_out = s.readline()
+		# print ' : ' + grbl_out.strip()
 		
 		
 elif mode == 'c':
