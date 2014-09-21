@@ -23,10 +23,11 @@ def manual(x, y, z):
 				z += 1
 			elif key.upper() == 'E':
 				z -=1
+				
+	output = 'G0 X%s Y%s Z%s' % (str(x), str(y), str(z))
+				
 	elif input == '':
 		output = 'esc'
-		
-	output = 'G0 X%s Y%s Z%s' % (str(x), str(y), str(z))
 	
 	man = [output, x, y, z]
 	
@@ -98,8 +99,8 @@ if mode == 't':
 		x = output[1]
 		y = output[2]
 		z = output[3]
+		print out
 		if out != "esc":
-			print out
 		
 		if out == "esc":
 			break
