@@ -25,7 +25,7 @@ def manual(x, y, z):
 			elif key.upper() == 'E':
 				z -=1
 				
-	output = 'G0 X%s Y%s Z%s' % (str(x), str(y), str(z))
+		output = 'G0 X%s Y%s Z%s' % (str(x), str(y), str(z))
 				
 	elif input == '':
 		output = 'esc'
